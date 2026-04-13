@@ -30,11 +30,3 @@ class GreeksCalculator:
         self.engine.sigma -= self.epsilon_v
         
         return (p_plus - p_orig) / self.epsilon_v
-
-# Example Usage:
-calc = GreeksCalculator(engine)
-delta = calc.calculate_delta(K=6800)
-vega = calc.calculate_vega(K=6800)
-
-print(f"Delta: {delta:.4f} (Option price moves ${delta:.2f} for every $1 S&P move)")
-print(f"Vega: {vega:.2f} (Option price moves ${vega/100:.2f} for every 1% Vol move)")
