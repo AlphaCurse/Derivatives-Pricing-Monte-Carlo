@@ -7,10 +7,10 @@ This engine solves the problem of pricing financial contracts where no closed-fo
 
 ### Key Features
 *   **Live Market Integration**: Fetches real-time S&P 500 spot prices, VIX (Volatility proxy), and Treasury yields via `yfinance`.
-*   **Vectorized Path Generation**: Utilizes `NumPy` for high-speed Geometric Brownian Motion (GBM) simulations.
-*   **Exotic Options**: Specialized payoffs for **Asian** (average price) and **Barrier** (knock-out) options.
-*   **Numerical Greeks**: High-precision Delta calculation using the Finite Difference Method.
-*   **Verification**: Automated unit tests comparing Monte Carlo results against the **Black-Scholes** analytical model.
+*   Utilizes `NumPy` for high-speed Geometric Brownian Motion (GBM) simulations.
+*   Specialized payoffs for **Asian** (average price) and **Barrier** (knock-out) options.
+*   High-precision Delta calculation using the Finite Difference Method.
+*   Automated unit tests comparing Monte Carlo results against the **Black-Scholes** analytical model.
 
 ---
 
@@ -28,6 +28,6 @@ Where:
 - $Z$: Random draw from a standard normal distribution $N(0,1)$
 
 ### Sensitivity Analysis (The Greeks)
-We calculate **Delta ($\Delta$)** using a central difference approximation to measure the option's sensitivity to the underlying price:
+I calculate **Delta ($\Delta$)** using a central difference approximation to measure the option's sensitivity to the underlying price:
 
 $$\Delta = \frac{V(S_0 + \epsilon) - V(S_0 - \epsilon)}{2\epsilon}$$
