@@ -10,10 +10,8 @@ def black_scholes_call(S, K, T, r, sigma):
     return S * norm.cdf(d1) - K * np.exp(-r * T) * norm.cdf(d2)
 
 def test_pricing_accuracy():
-    # Setup parameters
     S0, K, T, r, sigma = 100, 100, 1.0, 0.05, 0.2
     
-    # Run Engine
     engine = MonteCarloEngine(S0, r, sigma, T, steps=252, sims=100000)
     paths = engine.generate_paths(seed=42)
     pricer = VanillaPricer(r, T)
@@ -27,7 +25,6 @@ def test_pricing_accuracy():
     print(f"Black-Scholes Price: {bs_price:.4f}")
     print(f"Difference: {diff:.4f}")
     
-    # Assert the difference is small (within 0.10 cents for 100k sims)
     assert diff < 0.1, "Monte Carlo price is too far from Black-Scholes!"
 
 if __name__ == "__main__":
