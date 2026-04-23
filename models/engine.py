@@ -14,18 +14,15 @@ class MonteCarloEngine:
         """Generates asset price paths using vectorized GBM."""
         if seed: np.random.seed(seed)
         
-        # Log-returns: (r - 0.5 * sigma^2) * dt + sigma * sqrt(dt) * Z
         z = np.random.standard_normal((self.steps, self.sims))
         drift = (self.r - 0.5 * self.sigma**2) * self.dt
         diffusion = self.sigma * np.sqrt(self.dt) * z
         
-        # Accumulate returns over time
-        daily_returns = np.exp(drift + diffusion)
-        paths = np.zeros((self.steps + 1, self.sims))
-        paths[0] = self.S0
+        returns = np.exp(drift + diffusion)
+        paths = self.S0 * np.cumprod(np.insert(returns, 0, 1, axis=0), axis=0)
         
         for t in range(1, self.steps + 1):
-            paths[t] = paths[t-1] * daily_returns[t-1]
+            paths[t] = paths[t-1] * returns[t-1]
         return paths
 
     def price_european_call(self, K, paths):
