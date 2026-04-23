@@ -27,7 +27,7 @@ Where:
 - $\sigma$: Volatility of the underlying asset
 - $Z$: Random draw from a standard normal distribution $N(0,1)$
 
-### Sensitivity Analysis (The Greeks)
+### Sensitivity Analysis
 I calculate **Delta ($\Delta$)** using a central difference approximation to measure the option's sensitivity to the underlying price:
 
 $$\Delta = \frac{V(S_0 + \epsilon) - V(S_0 - \epsilon)}{2\epsilon}$$
